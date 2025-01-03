@@ -1,7 +1,7 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // Include all React files
+    './index.html', // Add this if your HTML is in the public folder
+    './src/**/*.{js,jsx,ts,tsx}', // This will include all JS/JSX/TS/TSX files
   ],
   theme: {
     extend: {},
