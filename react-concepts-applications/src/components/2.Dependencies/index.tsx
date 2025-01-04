@@ -1,4 +1,5 @@
 import React from 'react';
+
 const dependencies = [
     {
         category: "State Management",
@@ -89,6 +90,28 @@ const dependencies = [
             { name: "eslint-config-airbnb", description: "Airbnb's ESLint rules." },
         ],
     },
+    // Adding more dependencies for a comprehensive list
+    {
+        category: "Security",
+        items: [
+            { name: "helmet", description: "Helps secure your Express apps by setting various HTTP headers." },
+            { name: "cors", description: "Provides a middleware for handling cross-origin requests." },
+        ],
+    },
+    {
+        category: "Cloud Storage",
+        items: [
+            { name: "firebase", description: "Google's cloud-based platform for building and managing apps." },
+            { name: "aws-sdk", description: "Amazon Web Services SDK for JavaScript." },
+        ],
+    },
+    {
+        category: "Data Visualization",
+        items: [
+            { name: "recharts", description: "Charting library for React." },
+            { name: "chart.js", description: "Simple yet flexible JavaScript charting library." },
+        ],
+    },
 ];
 
 const DependenciesList: React.FC = () => {
@@ -104,13 +127,12 @@ const DependenciesList: React.FC = () => {
                         Learn about key dependencies that power modern React applications.
                     </p>
                 </div>
-
             </header>
 
-            <div className="space-y-6">
+            <div className="container mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 {dependencies.map((category) => (
                     <div key={category.category} className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-all duration-300">
-                        <h2 className="text-3xl font-semibold text-indigo-700 mb-4">
+                        <h2 className="text-2xl font-semibold text-indigo-700 mb-4">
                             {category.category}
                         </h2>
                         <ul className="space-y-4">
