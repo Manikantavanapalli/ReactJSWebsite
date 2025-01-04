@@ -8,7 +8,7 @@ const ProjectSetup = lazy(() => import('./components/1.ProjectSetup/index'));
 const DependenciesList = lazy(() => import('./components/2.Dependencies'));
 
 const PrivateRoute = ({ element }: { element: JSX.Element }) => {
-  const isAuthenticated = true; // Replace with actual logic
+  const isAuthenticated = Boolean(localStorage.getItem('authToken')); // Replace with actual logic
   return isAuthenticated ? element : <Navigate to="/login" replace />;
 };
 
