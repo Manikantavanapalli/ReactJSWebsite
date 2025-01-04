@@ -1,6 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
+import mockData from '../../dataJson/mock-data.json'; // Adjust the path based on file location
+import { useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const handleLogin = (e: React.FormEvent) => {
+        e.preventDefault();
+        const user = mockData.find(
+            (user: any) => user.email === email && user.password === password
+        );
+        if (user) {
+            localStorage.setItem('authToken', 'your-auth-token');
+            navigate('/home');
+        } else {
+            setError('Invalid email or password');
+        }
+    };
+
     return (
         <div className="h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-100 to-indigo-200">
             {/* Header */}
@@ -8,10 +28,16 @@ const Login: React.FC = () => {
             <p className="text-lg text-gray-700 mb-6">Log in to access your account</p>
 
             {/* Form */}
-            <form className="bg-white p-8 rounded-lg shadow-lg w-96">
+            <form
+                onSubmit={handleLogin}
+                className="bg-white p-8 rounded-lg shadow-lg w-96"
+            >
                 {/* Email */}
                 <div className="mb-6">
-                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">
+                    <label
+                        htmlFor="email"
+                        className="block mb-2 text-sm font-medium text-gray-700"
+                    >
                         Email Address
                     </label>
                     <input
@@ -19,13 +45,18 @@ const Login: React.FC = () => {
                         type="email"
                         placeholder="example@email.com"
                         className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         required
                     />
                 </div>
 
                 {/* Password */}
                 <div className="mb-4">
-                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700">
+                    <label
+                        htmlFor="password"
+                        className="block mb-2 text-sm font-medium text-gray-700"
+                    >
                         Password
                     </label>
                     <input
@@ -33,6 +64,8 @@ const Login: React.FC = () => {
                         type="password"
                         placeholder="••••••••"
                         className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
@@ -47,6 +80,11 @@ const Login: React.FC = () => {
                     </a>
                 </div>
 
+                {/* Error Message */}
+                {error && (
+                    <p className="text-sm text-red-600 mb-4 font-medium">{error}</p>
+                )}
+
                 {/* Submit Button */}
                 <button
                     type="submit"
@@ -58,7 +96,7 @@ const Login: React.FC = () => {
 
             {/* Footer */}
             <p className="text-sm text-gray-700 mt-6">
-                Don't have an account?{" "}
+                Don't have an account?{' '}
                 <a href="/register" className="text-blue-600 font-medium hover:underline">
                     Register Now
                 </a>

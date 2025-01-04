@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const concepts: string[] = ["React ProjectSetup", "Dependencies"];
+const concepts = [
+    { name: "React ProjectSetup", route: "/projectsetup" },
+    { name: "Dependencies", route: "/dependencieslist" },
+];
 
 const Home: React.FC = () => {
     return (
@@ -15,20 +18,6 @@ const Home: React.FC = () => {
                             Dive into key React concepts with real-world examples.
                         </p>
                     </div>
-                    <div className="space-x-4">
-                        <Link
-                            to="/login"
-                            className="px-4 py-2 bg-white text-purple-600 font-semibold rounded-lg shadow-md hover:bg-gray-200 transition-all"
-                        >
-                            Login
-                        </Link>
-                        <Link
-                            to="/register"
-                            className="px-4 py-2 bg-purple-700 text-white font-semibold rounded-lg shadow-md hover:bg-purple-800 transition-all"
-                        >
-                            Register
-                        </Link>
-                    </div>
                 </div>
             </header>
 
@@ -37,13 +26,13 @@ const Home: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {concepts.map((concept) => (
                         <Link
-                            key={concept}
-                            to="/projectsetup"
+                            key={concept.name}
+                            to={concept.route}
                             className="bg-white rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all"
                         >
                             <div className="p-8 text-center">
                                 <button className="w-full py-4 bg-gradient-to-r from-blue-400 to-indigo-500 text-white font-semibold text-lg rounded-lg hover:bg-gradient-to-l hover:from-indigo-500 hover:to-blue-400 transition-all">
-                                    {concept}
+                                    {concept.name}
                                 </button>
                             </div>
                         </Link>
