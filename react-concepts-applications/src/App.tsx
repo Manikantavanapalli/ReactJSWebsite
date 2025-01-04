@@ -1,37 +1,34 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/loginandregister/login';
-import Register from './pages/loginandregister/register';
-import ProjectSetup from './components/1.ProjectSetup/index';
-import DependenciesList from './components/2.Dependencies';
+
+const Home = lazy(() => import('./pages/Home'));
+const Login = lazy(() => import('./pages/loginandregister/login'));
+const Register = lazy(() => import('./pages/loginandregister/register'));
+const ProjectSetup = lazy(() => import('./components/1.ProjectSetup/index'));
+const DependenciesList = lazy(() => import('./components/2.Dependencies'));
+
+const PrivateRoute = ({ element }: { element: JSX.Element }) => {
+  const isAuthenticated = true; // Replace with actual logic
+  return isAuthenticated ? element : <Navigate to="/login" replace />;
+};
 
 const App: React.FC = () => {
-  const isAuthenticated = false; // Replace this with your actual authentication logic
-
   return (
     <Router>
-      <Routes>
-        {/* Default route: Redirect based on authentication */}
-        <Route
-          path="/"
-          element={
-            isAuthenticated ? (
-              <Navigate to="/home" replace />
-            ) : (
-              <Navigate to="/register" replace />
-            )
-          }
-        />
-        {/* Specific Routes */}
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/projectsetup" element={<ProjectSetup />} />
-        <Route path="/dependencieslist" element={<DependenciesList />} />
-        {/* Fallback for invalid routes */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route
+            path="/"
+            element={<Navigate to={localStorage.getItem('authToken') ? '/home' : '/login'} replace />}
+          />
+          <Route path="/home" element={<PrivateRoute element={<Home />} />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/projectsetup" element={<PrivateRoute element={<ProjectSetup />} />} />
+          <Route path="/dependencieslist" element={<PrivateRoute element={<DependenciesList />} />} />
+          <Route path="*" element={<div>404 - Page Not Found</div>} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 };
