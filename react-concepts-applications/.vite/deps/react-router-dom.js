@@ -5148,7 +5148,7 @@ function useNavigateUnstable() {
       if (dataRouterContext == null && basename !== "/") {
         path.pathname = path.pathname === "/" ? basename : joinPaths([basename, path.pathname]);
       }
-      (!!options.replace ? navigator2.replace : navigator2.push)(
+      (options.replace ? navigator2.replace : navigator2.push)(
         path,
         options.state,
         options
