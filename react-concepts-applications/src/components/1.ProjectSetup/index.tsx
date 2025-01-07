@@ -90,7 +90,7 @@ const Documentation: React.FC = () => {
           {/* Importance of Node.js and npm */}
           <div className="mt-8 bg-gradient-to-r from-purple-100 via-pink-50 to-yellow-100 p-6 rounded-lg shadow-lg">
             <h3 className="text-2xl font-semibold mb-4 text-center text-gray-800">
-              Why Are Node.js and npm Important?
+              Why Are Node.js and npm Important? about
             </h3>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
               <li>
