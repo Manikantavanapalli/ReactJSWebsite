@@ -4,6 +4,14 @@ import { Link } from 'react-router-dom';
 const concepts = [
     { name: "React ProjectSetup", route: "/projectsetup" },
     { name: "Dependencies", route: "/dependencieslist" },
+    { name: "React Elements", route: "/ReactElements"},
+    { name: "Vite Tool" , route: "/ViteTool"},
+    { name: "Jsx Elements", route: "/JsxElements"},
+    { name: "Component Types", route: "/ComponentTypes"},
+    { name: "Props", route: "/Props"},
+    { name: "State", route: "/State"}
+    
+    
 ];
 
 const Home: React.FC = () => {
