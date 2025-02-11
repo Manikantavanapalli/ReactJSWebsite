@@ -23,13 +23,56 @@ const ReactElements: React.FC = () => {
    "Welcome to react world!!");
    ReactDOM.render(headingone,document.getElementById("root"));`
   const example5 = `
-  const buttonElement =  React.createElement("button",
+
+const buttonElement =  React.createElement("button",
   {
    className: "btn",
    onClick: () => alert("Button Clicked!)
    },
    "Click Me");
    ReactDOM.render(buttonElement,document.getElementById("root"));`
+   const example6 = `
+   const head = React.createElement("h2",
+   {
+   className: "thirdArgument",
+   style:{
+   color:"blue"}
+   },
+   "This is a sample Heading");
+   const para = React.createElement("p",
+   {
+   style:{
+   color:"Red",
+   backgroundColor:"black"}
+   },
+   "React is a popular JavaScript library for building user interfaces,
+    primarily for web applications. Developed by Facebook
+    React allows developers to create reusable UI components that 
+    efficiently update and render when data changes.");
+
+     const div = React.createElement("div",
+     null,
+     [head,para]);
+   ReactDOM.render(div,document.getElementById("root"))`;
+   const example7 = `
+   const title = React.createElement("h2",
+   {
+   className: "thirdArgument",
+   style:{
+   color:"blue"}
+   },
+   "Welcome to reactJS");
+   const head2 = React.createElement("h3",
+   {
+   style:{
+   color:"pink"}
+   },
+   "This is a sample Heading Two");
+   const a = React.createElement("a",{
+   href:"https://legacy.reactjs.org/"},
+   "ReactJS)
+   const div1 = React.createElement("div",null,[title,a,head2])
+   ReactDOM.render(div1,document.getElementById("root"))`;
     return (
         <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-200 to-red-300 text-gray-800">
             {/* Header */}
@@ -105,6 +148,34 @@ const ReactElements: React.FC = () => {
                                       </div>
                                     </div>
                                   </div>
+                                </div>
+                                </section>
+                                <section className="mb-12 p-6 bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 rounded-lg shadow-md">
+                                <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                                <h3 className="text-xl font-extrabold mb-4">How to pass the third argument to the createElement function</h3>
+                                <p>The third argument can be the children of the element.This argument can be :</p>
+                                <ol className="list-inside list-disc">
+                                  <li>A string</li>
+                                  <li>A React Element</li>
+                                  <li>An array of React element</li>
+                                </ol>
+                                <div className="flex flex-row justify-between">
+                                  <div  className="bg-gradient-to-r from-bg-pink-400 via-bg-slate-700 to-bg-lime-100   p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                                    <pre>{example6}</pre>
+                                    Output :
+                                    <h2 className="text-2xl text-blue-950">This is a sample Heading</h2>
+                                    <p className="text-red-700 bg-black">React is a popular JavaScript library for building user interfaces,
+    primarily for web applications. Developed by Facebook
+    React allows developers to create reusable UI components that 
+    efficiently update and render when data changes.</p>
+                                  </div>
+                                  <div className="bg-gradient-to-r from-bg-pink-400 via-bg-slate-700 to-bg-lime-100   p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                                    <pre>{example7}</pre>
+                                    Output : <h2 className="text-xl text-blue-800">Welcome to reactJS</h2> 
+                                    <h3 className="text-xl text-pink-800">This is a sample Hreading Two</h3>
+                                    <a href="https://legacy.reactjs.org/">ReactJS</a>
+                                  </div>
+                                </div>
                                 </div>
                                 </section>
                             </main>
